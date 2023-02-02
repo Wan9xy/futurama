@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../../"
+	"futurama"
 )
 
 type TriggerParam struct {
@@ -23,4 +23,3 @@ func (self *Trigger) Trigger(ev *futurama.Event) *futurama.TriggerResult {
 	}
 	return &futurama.TriggerResult{Status: status}
 }
-

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../../"
+	"futurama"
 	"github.com/satori/go.uuid"
 )
 
@@ -9,8 +9,8 @@ type NoStore struct {
 	eventChan chan []*futurama.Event
 }
 
-func (self *NoStore) Open() error{ return nil }
-func (self *NoStore) Close() {}
+func (self *NoStore) Open() error { return nil }
+func (self *NoStore) Close()      {}
 
 func (self *NoStore) Save(ev *futurama.Event) string {
 	ev.Id = uuid.NewV1().String()
@@ -20,7 +20,7 @@ func (self *NoStore) Save(ev *futurama.Event) string {
 
 func (self *NoStore) Cancel(evId string) error {
 	ev := &futurama.Event{
-		Id: evId,
+		Id:     evId,
 		Status: futurama.EventStatus_CANCEL,
 	}
 	self.eventChan <- []*futurama.Event{ev}
@@ -39,4 +39,3 @@ func (self *NoStore) UpdateForRetry(ev *futurama.Event, retryParan interface{}) 
 func (self *NoStore) GetStat(reset bool) map[string]interface{} {
 	return map[string]interface{}{}
 }
-

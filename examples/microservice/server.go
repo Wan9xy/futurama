@@ -1,9 +1,9 @@
 package main
 
 import (
-	"../../"
 	"encoding/json"
 	"fmt"
+	"futurama"
 	"github.com/golang/glog"
 	"net/http"
 	"time"

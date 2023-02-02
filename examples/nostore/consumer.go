@@ -1,7 +1,7 @@
 package main
 
 import (
-	"../../"
+	"futurama"
 )
 
 type NoConsumer struct {
@@ -9,7 +9,7 @@ type NoConsumer struct {
 }
 
 func (self *NoConsumer) Start() {}
-func (self *NoConsumer) Stop() {}
+func (self *NoConsumer) Stop()  {}
 
 func (self *NoConsumer) Events() <-chan []*futurama.Event {
 	return self.C
@@ -18,4 +18,3 @@ func (self *NoConsumer) Events() <-chan []*futurama.Event {
 func (self *NoConsumer) GetStat(reset bool) map[string]interface{} {
 	return map[string]interface{}{}
 }
-

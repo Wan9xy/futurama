@@ -1,8 +1,8 @@
 package main
 
 import (
-	"../../"
 	"flag"
+	"futurama"
 	"github.com/golang/glog"
 	"time"
 )
@@ -14,7 +14,7 @@ func main() {
 	config := futurama.DefaultConfig()
 
 	noConsumer := &NoConsumer{make(chan []*futurama.Event, 1024)}
-	noStore    := &NoStore{noConsumer.C}
+	noStore := &NoStore{noConsumer.C}
 	q, err := futurama.CreateCustomQueue(config, map[string]futurama.TriggerInterface{
 		TriggerType_NoStore: &Trigger{},
 	}).Populate(noStore, noConsumer)
@@ -29,11 +29,11 @@ func main() {
 	defer q.Stop()
 
 	glog.Infoln("Trigger an event after 3sec")
-	q.Create(TriggerType_NoStore, time.Now().Add(3 * time.Second), &TriggerParam{futurama.EventStatus_OK, 2})
+	q.Create(TriggerType_NoStore, time.Now().Add(3*time.Second), &TriggerParam{futurama.EventStatus_OK, 2})
 	time.Sleep(5 * time.Second)
 
 	glog.Infoln("Trigger an event after 5sec")
-	evId := q.Create(TriggerType_NoStore, time.Now().Add(5 * time.Second), &TriggerParam{futurama.EventStatus_OK, 0})
+	evId := q.Create(TriggerType_NoStore, time.Now().Add(5*time.Second), &TriggerParam{futurama.EventStatus_OK, 0})
 	glog.Infoln("Event created", evId)
 	time.Sleep(2 * time.Second)
 
@@ -41,4 +41,3 @@ func main() {
 
 	time.Sleep(5 * time.Second)
 }
-

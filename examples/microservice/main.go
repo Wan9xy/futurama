@@ -1,9 +1,9 @@
 package main
 
 import (
-	"../../"
 	"encoding/json"
 	"flag"
+	"futurama"
 	"github.com/golang/glog"
 	"io/ioutil"
 )
